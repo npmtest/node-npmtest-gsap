@@ -1,0 +1,1300 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-gsap/node_modules/gsap/EasePack.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header medium">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-gsap">npmtest-gsap (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-gsap/node_modules/gsap/EasePack.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">53.76% <small>(100 / 186)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">35.56% <small>(48 / 135)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">36.36% <small>(16 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">53.51% <small>(99 / 185)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-gsap/node_modules/gsap/</a> » EasePack.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">44</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-yes">42</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">157</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-yes">40</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * VERSION: 1.15.5
+ * DATE: 2017-01-17
+ * UPDATES AND DOCS AT: http://greensock.com
+ *
+ * @license Copyright (c) 2008-2017, GreenSock. All rights reserved.
+ * This work is subject to the terms at http://greensock.com/standard-license or for
+ * Club GreenSock members, the software agreement that was issued with your membership.
+ * 
+ * @author: Jack Doyle, jack@greensock.com
+ **/
+var _gsScope = (typeof(module) !== "undefined" &amp;&amp; module.exports &amp;&amp; typeof(global) !== "undefined") ? global : <span class="branch-1 cbranch-no" title="branch not covered">this || window;</span> //helps ensure compatibility with AMD/RequireJS and CommonJS/Node
+(_gsScope._gsQueue || (<span class="branch-1 cbranch-no" title="branch not covered">_gsScope._gsQueue = [])</span>).push( function() {
+&nbsp;
+	"use strict";
+&nbsp;
+	_gsScope._gsDefine("easing.Back", ["easing.Ease"], function(Ease) {
+		
+		var w = (_gsScope.GreenSockGlobals || <span class="branch-1 cbranch-no" title="branch not covered">_gsScope)</span>,
+			gs = w.com.greensock,
+			_2PI = Math.PI * 2,
+			_HALF_PI = Math.PI / 2,
+			_class = gs._class,
+			_create = function(n, f) {
+				var C = _class("easing." + n, function(){}, true),
+					p = C.prototype = new Ease();
+				p.constructor = C;
+				p.getRatio = f;
+				return C;
+			},
+			_easeReg = Ease.register || <span class="fstat-no" title="function not covered"><span class="branch-1 cbranch-no" title="branch not covered">function(){</span>},</span> //put an empty function in place just as a safety measure in case someone loads an OLD version of TweenLite.js where Ease.register doesn't exist.
+			_wrap = function(name, EaseOut, EaseIn, EaseInOut, aliases) {
+				var C = _class("easing."+name, {
+					easeOut:new EaseOut(),
+					easeIn:new EaseIn(),
+					easeInOut:new EaseInOut()
+				}, true);
+				_easeReg(C, name);
+				return C;
+			},
+			EasePoint = function(time, value, next) {
+				this.t = time;
+				this.v = value;
+				if (next) {
+					this.next = next;
+					next.prev = this;
+					this.c = next.v - value;
+					this.gap = next.t - time;
+				}
+			},
+&nbsp;
+			//Back
+			_createBack = function(n, f) {
+				var C = _class("easing." + n, function(overshoot) {
+						this._p1 = (overshoot || overshoot === 0) ? <span class="branch-0 cbranch-no" title="branch not covered">overshoot </span>: 1.70158;
+						this._p2 = this._p1 * 1.525;
+					}, true), 
+					p = C.prototype = new Ease();
+				p.constructor = C;
+				p.getRatio = f;
+				p.config = <span class="fstat-no" title="function not covered">function(overshoot) {</span>
+<span class="cstat-no" title="statement not covered">					return new C(overshoot);</span>
+				};
+				return C;
+			},
+&nbsp;
+			Back = _wrap("Back",
+				_createBack("BackOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">					return ((p = p - 1) * p * ((this._p1 + 1) * p + this._p1) + 1);</span>
+				}),
+				_createBack("BackIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">					return p * p * ((this._p1 + 1) * p - this._p1);</span>
+				}),
+				_createBack("BackInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">					return ((p *= 2) &lt; 1) ? 0.5 * p * p * ((this._p2 + 1) * p - this._p2) : 0.5 * ((p -= 2) * p * ((this._p2 + 1) * p + this._p2) + 2);</span>
+				})
+			),
+&nbsp;
+&nbsp;
+			//SlowMo
+			SlowMo = _class("easing.SlowMo", function(linearRatio, power, yoyoMode) {
+				power = (power || power === 0) ? power : 0.7;
+				if (linearRatio == null) {
+					linearRatio = 0.7;
+				} else <span class="missing-if-branch" title="if path not taken">I</span>if (linearRatio &gt; 1) {
+<span class="cstat-no" title="statement not covered">					linearRatio = 1;</span>
+				}
+				this._p = (linearRatio !== 1) ? power : <span class="branch-1 cbranch-no" title="branch not covered">0;</span>
+				this._p1 = (1 - linearRatio) / 2;
+				this._p2 = linearRatio;
+				this._p3 = this._p1 + this._p2;
+				this._calcEnd = (yoyoMode === true);
+			}, true),
+			p = SlowMo.prototype = new Ease(),
+			SteppedEase, RoughEase, _createElastic;
+			
+		p.constructor = SlowMo;
+		p.getRatio = <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">			var r = p + (0.5 - p) * this._p;</span>
+<span class="cstat-no" title="statement not covered">			if (p &lt; this._p1) {</span>
+<span class="cstat-no" title="statement not covered">				return this._calcEnd ? 1 - ((p = 1 - (p / this._p1)) * p) : r - ((p = 1 - (p / this._p1)) * p * p * p * r);</span>
+			} else <span class="cstat-no" title="statement not covered">if (p &gt; this._p3) {</span>
+<span class="cstat-no" title="statement not covered">				return this._calcEnd ? 1 - (p = (p - this._p3) / this._p1) * p : r + ((p - r) * (p = (p - this._p3) / this._p1) * p * p * p);</span>
+			}
+<span class="cstat-no" title="statement not covered">			return this._calcEnd ? 1 : r;</span>
+		};
+		SlowMo.ease = new SlowMo(0.7, 0.7);
+		
+		p.config = SlowMo.config = <span class="fstat-no" title="function not covered">function(linearRatio, power, yoyoMode) {</span>
+<span class="cstat-no" title="statement not covered">			return new SlowMo(linearRatio, power, yoyoMode);</span>
+		};
+&nbsp;
+&nbsp;
+		//SteppedEase
+		SteppedEase = _class("easing.SteppedEase", function(steps) {
+				steps = steps || 1;
+				this._p1 = 1 / steps;
+				this._p2 = steps + 1;
+			}, true);
+		p = SteppedEase.prototype = new Ease();	
+		p.constructor = SteppedEase;
+		p.getRatio = <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">			if (p &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered">				p = 0;</span>
+			} else <span class="cstat-no" title="statement not covered">if (p &gt;= 1) {</span>
+<span class="cstat-no" title="statement not covered">				p = 0.999999999;</span>
+			}
+<span class="cstat-no" title="statement not covered">			return ((this._p2 * p) &gt;&gt; 0) * this._p1;</span>
+		};
+		p.config = SteppedEase.config = <span class="fstat-no" title="function not covered">function(steps) {</span>
+<span class="cstat-no" title="statement not covered">			return new SteppedEase(steps);</span>
+		};
+&nbsp;
+&nbsp;
+		//RoughEase
+		RoughEase = _class("easing.RoughEase", function(vars) {
+			vars = vars || {};
+			var taper = vars.taper || "none",
+				a = [],
+				cnt = 0,
+				points = (vars.points || 20) | 0,
+				i = points,
+				randomize = (vars.randomize !== false),
+				clamp = (vars.clamp === true),
+				template = (vars.template instanceof Ease) ? <span class="branch-0 cbranch-no" title="branch not covered">vars.template </span>: null,
+				strength = (typeof(vars.strength) === "number") ? <span class="branch-0 cbranch-no" title="branch not covered">vars.strength * 0.4 </span>: 0.4,
+				x, y, bump, invX, obj, pnt;
+			while (--i &gt; -1) {
+				x = randomize ? Math.random() : <span class="branch-1 cbranch-no" title="branch not covered">(1 / points) * i;</span>
+				y = template ? <span class="branch-0 cbranch-no" title="branch not covered">template.getRatio(x) </span>: x;
+				<span class="missing-if-branch" title="else path not taken">E</span>if (taper === "none") {
+					bump = strength;
+				} else <span class="cstat-no" title="statement not covered">if (taper === "out") {</span>
+<span class="cstat-no" title="statement not covered">					invX = 1 - x;</span>
+<span class="cstat-no" title="statement not covered">					bump = invX * invX * strength;</span>
+				} else <span class="cstat-no" title="statement not covered">if (taper === "in") {</span>
+<span class="cstat-no" title="statement not covered">					bump = x * x * strength;</span>
+				} else <span class="cstat-no" title="statement not covered">if (x &lt; 0.5) {  //"both" (start)</span>
+<span class="cstat-no" title="statement not covered">					invX = x * 2;</span>
+<span class="cstat-no" title="statement not covered">					bump = invX * invX * 0.5 * strength;</span>
+				} else {				//"both" (end)
+<span class="cstat-no" title="statement not covered">					invX = (1 - x) * 2;</span>
+<span class="cstat-no" title="statement not covered">					bump = invX * invX * 0.5 * strength;</span>
+				}
+				<span class="missing-if-branch" title="else path not taken">E</span>if (randomize) {
+					y += (Math.random() * bump) - (bump * 0.5);
+				} else <span class="cstat-no" title="statement not covered">if (i % 2) {</span>
+<span class="cstat-no" title="statement not covered">					y += bump * 0.5;</span>
+				} else {
+<span class="cstat-no" title="statement not covered">					y -= bump * 0.5;</span>
+				}
+				<span class="missing-if-branch" title="if path not taken">I</span>if (clamp) {
+<span class="cstat-no" title="statement not covered">					if (y &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered">						y = 1;</span>
+					} else <span class="cstat-no" title="statement not covered">if (y &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered">						y = 0;</span>
+					}
+				}
+				a[cnt++] = {x:x, y:y};
+			}
+			a.sort(function(a, b) {
+				return a.x - b.x;
+			});
+&nbsp;
+			pnt = new EasePoint(1, 1, null);
+			i = points;
+			while (--i &gt; -1) {
+				obj = a[i];
+				pnt = new EasePoint(obj.x, obj.y, pnt);
+			}
+&nbsp;
+			this._prev = new EasePoint(0, 0, (pnt.t !== 0) ? pnt : <span class="branch-1 cbranch-no" title="branch not covered">pnt.next)</span>;
+		}, true);
+		p = RoughEase.prototype = new Ease();
+		p.constructor = RoughEase;
+		p.getRatio = <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">			var pnt = this._prev;</span>
+<span class="cstat-no" title="statement not covered">			if (p &gt; pnt.t) {</span>
+<span class="cstat-no" title="statement not covered">				while (pnt.next &amp;&amp; p &gt;= pnt.t) {</span>
+<span class="cstat-no" title="statement not covered">					pnt = pnt.next;</span>
+				}
+<span class="cstat-no" title="statement not covered">				pnt = pnt.prev;</span>
+			} else {
+<span class="cstat-no" title="statement not covered">				while (pnt.prev &amp;&amp; p &lt;= pnt.t) {</span>
+<span class="cstat-no" title="statement not covered">					pnt = pnt.prev;</span>
+				}
+			}
+<span class="cstat-no" title="statement not covered">			this._prev = pnt;</span>
+<span class="cstat-no" title="statement not covered">			return (pnt.v + ((p - pnt.t) / pnt.gap) * pnt.c);</span>
+		};
+		p.config = <span class="fstat-no" title="function not covered">function(vars) {</span>
+<span class="cstat-no" title="statement not covered">			return new RoughEase(vars);</span>
+		};
+		RoughEase.ease = new RoughEase();
+&nbsp;
+&nbsp;
+		//Bounce
+		_wrap("Bounce",
+			_create("BounceOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				if (p &lt; 1 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 7.5625 * p * p;</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 7.5625 * (p -= 1.5 / 2.75) * p + 0.75;</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2.5 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 7.5625 * (p -= 2.25 / 2.75) * p + 0.9375;</span>
+				}
+<span class="cstat-no" title="statement not covered">				return 7.5625 * (p -= 2.625 / 2.75) * p + 0.984375;</span>
+			}),
+			_create("BounceIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				if ((p = 1 - p) &lt; 1 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 1 - (7.5625 * p * p);</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 1 - (7.5625 * (p -= 1.5 / 2.75) * p + 0.75);</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2.5 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					return 1 - (7.5625 * (p -= 2.25 / 2.75) * p + 0.9375);</span>
+				}
+<span class="cstat-no" title="statement not covered">				return 1 - (7.5625 * (p -= 2.625 / 2.75) * p + 0.984375);</span>
+			}),
+			_create("BounceInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				var invert = (p &lt; 0.5);</span>
+<span class="cstat-no" title="statement not covered">				if (invert) {</span>
+<span class="cstat-no" title="statement not covered">					p = 1 - (p * 2);</span>
+				} else {
+<span class="cstat-no" title="statement not covered">					p = (p * 2) - 1;</span>
+				}
+<span class="cstat-no" title="statement not covered">				if (p &lt; 1 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					p = 7.5625 * p * p;</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					p = 7.5625 * (p -= 1.5 / 2.75) * p + 0.75;</span>
+				} else <span class="cstat-no" title="statement not covered">if (p &lt; 2.5 / 2.75) {</span>
+<span class="cstat-no" title="statement not covered">					p = 7.5625 * (p -= 2.25 / 2.75) * p + 0.9375;</span>
+				} else {
+<span class="cstat-no" title="statement not covered">					p = 7.5625 * (p -= 2.625 / 2.75) * p + 0.984375;</span>
+				}
+<span class="cstat-no" title="statement not covered">				return invert ? (1 - p) * 0.5 : p * 0.5 + 0.5;</span>
+			})
+		);
+&nbsp;
+&nbsp;
+		//CIRC
+		_wrap("Circ",
+			_create("CircOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return Math.sqrt(1 - (p = p - 1) * p);</span>
+			}),
+			_create("CircIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return -(Math.sqrt(1 - (p * p)) - 1);</span>
+			}),
+			_create("CircInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return ((p*=2) &lt; 1) ? -0.5 * (Math.sqrt(1 - p * p) - 1) : 0.5 * (Math.sqrt(1 - (p -= 2) * p) + 1);</span>
+			})
+		);
+&nbsp;
+&nbsp;
+		//Elastic
+		_createElastic = function(n, f, def) {
+			var C = _class("easing." + n, function(amplitude, period) {
+					this._p1 = (amplitude &gt;= 1) ? <span class="branch-0 cbranch-no" title="branch not covered">amplitude </span>: 1; //note: if amplitude is &lt; 1, we simply adjust the period for a more natural feel. Otherwise the math doesn't work right and the curve starts at 1.
+					this._p2 = (period || def) / (amplitude &lt; 1 ? <span class="branch-0 cbranch-no" title="branch not covered">amplitude </span>: 1);
+					this._p3 = this._p2 / _2PI * (Math.asin(1 / this._p1) || <span class="branch-1 cbranch-no" title="branch not covered">0)</span>;
+					this._p2 = _2PI / this._p2; //precalculate to optimize
+				}, true),
+				p = C.prototype = new Ease();
+			p.constructor = C;
+			p.getRatio = f;
+			p.config = <span class="fstat-no" title="function not covered">function(amplitude, period) {</span>
+<span class="cstat-no" title="statement not covered">				return new C(amplitude, period);</span>
+			};
+			return C;
+		};
+		_wrap("Elastic",
+			_createElastic("ElasticOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return this._p1 * Math.pow(2, -10 * p) * Math.sin( (p - this._p3) * this._p2 ) + 1;</span>
+			}, 0.3),
+			_createElastic("ElasticIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return -(this._p1 * Math.pow(2, 10 * (p -= 1)) * Math.sin( (p - this._p3) * this._p2 ));</span>
+			}, 0.3),
+			_createElastic("ElasticInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return ((p *= 2) &lt; 1) ? -0.5 * (this._p1 * Math.pow(2, 10 * (p -= 1)) * Math.sin( (p - this._p3) * this._p2)) : this._p1 * Math.pow(2, -10 *(p -= 1)) * Math.sin( (p - this._p3) * this._p2 ) * 0.5 + 1;</span>
+			}, 0.45)
+		);
+&nbsp;
+&nbsp;
+		//Expo
+		_wrap("Expo",
+			_create("ExpoOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return 1 - Math.pow(2, -10 * p);</span>
+			}),
+			_create("ExpoIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return Math.pow(2, 10 * (p - 1)) - 0.001;</span>
+			}),
+			_create("ExpoInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return ((p *= 2) &lt; 1) ? 0.5 * Math.pow(2, 10 * (p - 1)) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));</span>
+			})
+		);
+&nbsp;
+&nbsp;
+		//Sine
+		_wrap("Sine",
+			_create("SineOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return Math.sin(p * _HALF_PI);</span>
+			}),
+			_create("SineIn", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return -Math.cos(p * _HALF_PI) + 1;</span>
+			}),
+			_create("SineInOut", <span class="fstat-no" title="function not covered">function(p) {</span>
+<span class="cstat-no" title="statement not covered">				return -0.5 * (Math.cos(Math.PI * p) - 1);</span>
+			})
+		);
+&nbsp;
+		_class("easing.EaseLookup", {
+				find:<span class="fstat-no" title="function not covered">function(s) {</span>
+<span class="cstat-no" title="statement not covered">					return Ease.map[s];</span>
+				}
+			}, true);
+&nbsp;
+		//register the non-standard eases
+		_easeReg(w.SlowMo, "SlowMo", "ease,");
+		_easeReg(RoughEase, "RoughEase", "ease,");
+		_easeReg(SteppedEase, "SteppedEase", "ease,");
+		
+		return Back;
+		
+	}, true);
+&nbsp;
+}); <span class="missing-if-branch" title="else path not taken">E</span>if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); }
+&nbsp;
+//export to AMD/RequireJS and CommonJS/Node (precursor to full modular build system coming at a later date)
+(function() {
+	"use strict";
+	var getGlobal = function() {
+		return (_gsScope.GreenSockGlobals || <span class="branch-1 cbranch-no" title="branch not covered">_gsScope)</span>;
+	};
+	<span class="missing-if-branch" title="if path not taken">I</span>if (typeof(define) === "function" &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered">define.amd)</span> { //AMD
+<span class="cstat-no" title="statement not covered">		define(["./TweenLite"], getGlobal);</span>
+	} else <span class="missing-if-branch" title="else path not taken">E</span>if (typeof(module) !== "undefined" &amp;&amp; module.exports) { //node
+		require("./TweenLite.js");
+		module.exports = getGlobal();
+	}
+}());
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 17 2017 21:46:45 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
