@@ -1,4 +1,7 @@
-# test coverage for  [gsap (v1.19.1)](http://greensock.com/gsap/)  [![npm package](https://img.shields.io/npm/v/npmtest-gsap.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-gsap) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-gsap.svg)](https://travis-ci.org/npmtest/node-npmtest-gsap)
+# npmtest-gsap
+
+#### basic test coverage for  [gsap (v1.19.1)](http://greensock.com/gsap/)  [![npm package](https://img.shields.io/npm/v/npmtest-gsap.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-gsap) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-gsap.svg)](https://travis-ci.org/npmtest/node-npmtest-gsap)
+
 #### Think of GSAP as the Swiss Army Knife of animation...but better. It animates anything JavaScript can touch (CSS properties, canvas library objects, SVG, generic objects, whatever) and it solves countless browser inconsistencies, all with blazing speed (up
 
 [![NPM](https://nodei.co/npm/gsap.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/gsap)
@@ -7,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-gsap/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-gsap/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-gsap/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-gsap/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-gsap/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-gsap/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-gsap/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-gsap/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-gsap/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-gsap/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-gsap/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-gsap/build/coverage.html/index.html)
 
@@ -80,7 +83,8 @@
         "url": "git+https://github.com/greensock/GreenSock-JS.git"
     },
     "scripts": {},
-    "version": "1.19.1"
+    "version": "1.19.1",
+    "bin": {}
 }
 ```
 
